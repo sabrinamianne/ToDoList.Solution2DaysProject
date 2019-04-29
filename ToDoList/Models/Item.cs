@@ -13,10 +13,7 @@ namespace ToDoList.Models
       _description = description;
       _instances.Add(this);
     }
-    public static void ClearAll()
-    {
-      _instances.Clear();
-    }
+
 
     public string GetDescription()
     {
@@ -30,6 +27,11 @@ namespace ToDoList.Models
     public static List<Item> GetAll()
     {
       return _instances;
+    }
+
+    public static void ClearAll()
+    {
+      _instances.Clear();
     }
   }
 }
