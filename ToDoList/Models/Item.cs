@@ -6,12 +6,12 @@ namespace ToDoList.Models
   public class Item // class
   {
     private string _description; // field
-    private static List<Item>_instances = new List<Item>{};
+    private static List<Item>_instances = new List<Item>{}; //list
 
     public Item (string description) // constructor
     {
       _description = description;
-      _instances.Add(this);
+      _instances.Add(this); //what is this 
     }
 
 
