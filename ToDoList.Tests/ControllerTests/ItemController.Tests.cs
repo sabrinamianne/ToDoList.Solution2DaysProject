@@ -22,7 +22,7 @@ namespace ToDoList.Tests
       public void Index_HasCorrectModelType_ItemList()
       {
         //Arrange
-        HomeController controller = new HomeController();
+        ItemsController controller = new ItemsController();
         ViewResult indexView = controller.Index() as ViewResult;
 
         //Act
