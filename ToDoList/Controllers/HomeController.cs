@@ -15,3 +15,12 @@ namespace ToDoList.Controllers
 
   }
 }
+
+// Item myItem = new Item();
+// myItem.SetDescription();
+
+// public void setDescription(string description) {
+// this.
+// }
+
+//  return View("Index.cshtml", starterItem);

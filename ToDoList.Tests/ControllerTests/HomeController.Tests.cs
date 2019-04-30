@@ -21,18 +21,6 @@ namespace ToDoList.Tests
         // Assert
         Assert.IsInstanceOfType (indexView, typeof(ViewResult));
       }
-      [TestMethod]
-      public void Index_HasCorrectModelType_ItemList()
-      {
-        // Arrange
-        HomeController controller = new HomeController();
-        ViewResult indexView = new HomeController().Index() as ViewResult;
-
-        // ActionResult
-        
-
-        //Assert
-        Assert.IsInstanceOfType(result, typeof(List<Item>));
-      }
+      
     }
 }
