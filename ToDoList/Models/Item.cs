@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-
+using System;
 
 namespace ToDoList.Models
 {
@@ -42,6 +42,9 @@ namespace ToDoList.Models
 
     public static Item Find (int searchId)
     {
+      for (int i = 0; i < _instances.Count; i++) {
+        Console.WriteLine("Item " + _instances[i].GetDescription() + " " + _instances[i].GetId());
+      }
       return _instances[searchId-1];
     }
 

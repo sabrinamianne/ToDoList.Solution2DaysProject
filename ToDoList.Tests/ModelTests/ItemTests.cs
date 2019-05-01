@@ -6,8 +6,12 @@ using ToDoList.Models;
 namespace ToDoList.Tests
 {
   [TestClass]
-  public class ItemTest
+  public class ItemTest : IDisposable
   {
+    public void Dispose()
+    {
+      Item.ClearAll();
+    }
 
     [TestMethod]
     public void ItemConstructor_CreatesInstanceOfItem_Item()
@@ -31,6 +35,8 @@ namespace ToDoList.Tests
     [TestMethod]
      public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
      {
+
+
        //Arrange
        string description = "Walk the dog.";
        Item newItem = new Item(description);
@@ -39,11 +45,13 @@ namespace ToDoList.Tests
        int result = newItem.GetId();
 
        //Assert
-       Assert.AreEqual(5, result);
+       Assert.AreEqual(1, result);
      }
      [TestMethod]
       public void Find_ReturnsCorrectItem_Item()
       {
+        
+
         //Arrange
         string description01 = "Walk the dog";
         string description02 = "Wash the dishes";
@@ -54,7 +62,7 @@ namespace ToDoList.Tests
         Item result = Item.Find(2);
 
         //Assert
-        Assert.AreEqual(newItem2,result);
+        Assert.AreEqual(newItem2, result);
       }
 
   }
