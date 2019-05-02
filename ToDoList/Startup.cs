@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace ToDoList
 {
@@ -25,6 +26,22 @@ namespace ToDoList
 
     public void Configure(IApplicationBuilder app)
     {
+      // using Microsoft.AspNetCore.Diagnostics;
+      app.UseExceptionHandler(
+        new ExceptionHandlerOptions
+        {
+          ExceptionHandler = async context =>
+          {
+            context.Response.ContentType = "text/html";
+            var ex = context.Features.Get<IExceptionHandlerFeature>();
+            if (ex != null)
+            {
+              var err = $"<h1>Error: {ex.Error.Message}</h1>";
+              await context.Response.WriteAsync(err);
+            }
+          }
+        });
+
       app.UseMvc(routes =>
       {
         routes.MapRoute(
@@ -32,6 +49,7 @@ namespace ToDoList
           template: "{controller=Home}/{action=Index}/{id?}");
       });
 
+        app.UseStaticFiles();
         app.Run(async (context) =>
         {
           await context.Response.WriteAsync("Something went wrong!");
