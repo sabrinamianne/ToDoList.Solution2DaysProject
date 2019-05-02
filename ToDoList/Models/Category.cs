@@ -10,12 +10,14 @@ namespace ToDoList.Models
     private int _id;
     private List<Item> _items;
 
+
     public Category(string categoryName)
     {
       _name = categoryName;
       _instances.Add(this);
       _id = _instances.Count;
       _items = new List<Item>{};
+
     }
 
     public void AddItem(Item item)
@@ -52,5 +54,24 @@ namespace ToDoList.Models
     {
       return _instances[id-1];
     }
+
+    public static List<Category> FilterAll(string categoryFilter)
+    {
+     List<Category> filteredcategories = new List<Category>();
+
+      foreach(Category category in _instances)
+
+      {
+        if(category.GetName().Contains(categoryFilter))
+        {
+          filteredcategories.Add(category);
+        }
+      }
+
+      return filteredcategories ;
+    }
+
+
+
   }
 }

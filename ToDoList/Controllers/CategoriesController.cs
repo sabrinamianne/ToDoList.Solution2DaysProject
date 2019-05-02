@@ -51,5 +51,20 @@ namespace ToDoList.Controllers
       model.Add("category", foundCategory);
       return View("Show", model);
     }
+
+    [HttpGet("/search_by_category")]
+    public ActionResult SearchByCategory()
+    {
+      return View();
+    }
+
+
+    [HttpPost("/search_by_category")]
+    public ActionResult Index(string artist)
+    {
+      List<Category> filteredcategories = Category.FilterAll(artist);
+      return View(filteredcategories);
+    }
+
   }
 }
