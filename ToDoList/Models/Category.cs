@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 
 namespace ToDoList.Models
@@ -11,10 +12,20 @@ namespace ToDoList.Models
 
     public Category(string categoryName)
     {
-      _name =categoryName;
+      _name = categoryName;
       _instances.Add(this);
       _id = _instances.Count;
       _items = new List<Item>{};
+    }
+
+    public void AddItem(Item item)
+    {
+      _items.Add(item);
+    }
+
+    public static void ClearAll()
+    {
+      _instances.Clear();
     }
 
     public string GetName()
@@ -27,14 +38,19 @@ namespace ToDoList.Models
       return _id;
     }
 
-    public static void ClearAll()
-    {
-      _instances.Clear();
-    }
-
-    public static List<Cathegory>GetAll()
+    public static List<Category> GetAll()
     {
       return _instances;
+    }
+
+    public List<Item> GetItems()
+    {
+      return _items;
+    }
+
+    public static Category Find(int id)
+    {
+      return _instances[id-1];
     }
   }
 }
