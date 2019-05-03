@@ -26,21 +26,23 @@ namespace ToDoList
 
     public void Configure(IApplicationBuilder app)
     {
-      // using Microsoft.AspNetCore.Diagnostics;
-      app.UseExceptionHandler(
-        new ExceptionHandlerOptions
-        {
-          ExceptionHandler = async context =>
-          {
-            context.Response.ContentType = "text/html";
-            var ex = context.Features.Get<IExceptionHandlerFeature>();
-            if (ex != null)
-            {
-              var err = $"<h1>Error: {ex.Error.Message}</h1>";
-              await context.Response.WriteAsync(err);
-            }
-          }
-        });
+      // // using Microsoft.AspNetCore.Diagnostics;
+      // app.UseExceptionHandler(
+      //   new ExceptionHandlerOptions
+      //   {
+      //     ExceptionHandler = async context =>
+      //     {
+      //       context.Response.ContentType = "text/html";
+      //       var ex = context.Features.Get<IExceptionHandlerFeature>();
+      //       if (ex != null)
+      //       {
+      //         var err = $"<h1>Error: {ex.Error.Message}</h1>";
+      //         await context.Response.WriteAsync(err);
+      //       }
+      //     }
+      //   });
+      app.UseDeveloperExceptionPage();
+
 
       app.UseMvc(routes =>
       {

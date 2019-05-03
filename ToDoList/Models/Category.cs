@@ -27,6 +27,7 @@ namespace ToDoList.Models
 
     public static void ClearAll()
     {
+
       _instances.Clear();
     }
 
@@ -71,6 +72,16 @@ namespace ToDoList.Models
       return filteredcategories ;
     }
 
+    public void Delete ()
+    {
+      for (int i =0; i< _instances.Count; i++)
+      {
+        if (_instances[i].GetId() == _id)
+        {
+          _instances.Remove(_instances[i]);
+        }
+      }
+    }
 
 
   }
