@@ -4,6 +4,9 @@
 @foreach (var item in @Model["items"])
 {
   <li><a href='/categories/@Model["category"].GetId()/items/@item.GetId()'>@item.GetDescription()</a></li>
+  <form action="/categories/@Model["category"].GetId()/items/@item.GetId()/deleteitem" method="post">
+    <button type="submit" name="button">Delete item</button>
+  </form>
 }
 </ol>
 

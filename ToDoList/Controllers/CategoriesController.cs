@@ -52,6 +52,20 @@ namespace ToDoList.Controllers
       return View("Show", model);
     }
 
+    [HttpPost("/categories/{categoryId}/items/{itemId}/deleteitem")]
+    public ActionResult ShowId (int categoryId, int itemId)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category foundCategory = Category.Find(categoryId);
+      Item item = Item.Find(itemId);
+      item.DeleteItem();
+      foundCategory.ClearItem(item);
+      List<Item> categoryItems = foundCategory.GetItems();
+      model.Add("items", categoryItems);
+      model.Add("category", foundCategory);
+      return View("Show", model);
+    }
+
     [HttpGet("/search_by_category")]
     public ActionResult SearchByCategory()
     {
@@ -74,6 +88,8 @@ namespace ToDoList.Controllers
       foundCategory.Delete();
       return RedirectToAction("Index");
     }
+
+
 
   }
 }

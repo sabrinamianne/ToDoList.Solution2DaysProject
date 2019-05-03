@@ -46,6 +46,18 @@ namespace ToDoList.Models
       return _instances[searchId-1];
     }
 
+    public void DeleteItem ()
+    {
+      for (int i =0; i< _instances.Count; i++)
+      {
+        if (_instances[i].GetId() == _id)
+        {
+          _instances.Remove(_instances[i]);
+        }
+      }
+    }
+
+
 
 
   }

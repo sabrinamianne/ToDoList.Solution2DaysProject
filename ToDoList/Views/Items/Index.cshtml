@@ -11,7 +11,16 @@
 {
   @foreach (Item item in Model)
 {
+
+
+<form action="/items/@item.GetId()/deleteitem" method="post">
+  <button type="submit" name="button">Delete</button>
+</form>
   <li><a href = '/items/@item.GetId()'>@item.GetDescription()</a></li>
+<a href='/items/@item.GetId()/deleteitem'>Delete</a>
+
+
+
 }
 }
 
