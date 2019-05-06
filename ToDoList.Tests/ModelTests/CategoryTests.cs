@@ -46,7 +46,7 @@ namespace ToDoList.Tests
         int result = newCategory.GetId();
 
         //Assert
-        Assert.AreEqual(3, result);
+        Assert.AreEqual(1, result);
       }
 
       [TestMethod]
