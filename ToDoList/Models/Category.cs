@@ -32,11 +32,11 @@ namespace ToDoList.Models
       _items.Remove(item);
     }
 
-    public static void ClearAll()
-    {
-
-      _instances.Clear();
-    }
+    // public static void ClearAll()
+    // {
+    //
+    //   _instances.Clear();
+    // }
 
     public string GetName()
     {
@@ -50,7 +50,25 @@ namespace ToDoList.Models
 
     public static List<Category> GetAll()
     {
-      return _instances;
+      List<Category> allCategories = new List<Category> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM categories;";
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int CategoryId = rdr.GetInt32(0);
+        string CategoryName = rdr.GetString(1);
+        Category newCategory = new Category(CategoryName);
+        allCategories.Add(newCategory);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return allCategories;
     }
 
     public List<Item> GetItems()
@@ -78,6 +96,21 @@ namespace ToDoList.Models
 
       return filteredcategories ;
     }
+
+
+    public static void ClearAll()
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        var cmd = conn.CreateCommand() as MySqlCommand;
+        cmd.CommandText = @"DELETE FROM categories;";
+        cmd.ExecuteNonQuery();
+        conn.Close();
+        if (conn != null)
+        {
+          conn.Dispose();
+        }
+      }
 
     public void Delete ()
     {

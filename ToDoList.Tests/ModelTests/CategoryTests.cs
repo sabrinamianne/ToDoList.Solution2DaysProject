@@ -8,8 +8,15 @@ namespace ToDoList.Tests
   [TestClass]
   public class CategoryTest :IDisposable
   {
+
+
+    public CategoryTest()
+   {
+     DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=to_do_list_test;";
+   }
     public void Dispose()
     {
+
       Category.ClearAll();
     }
 
@@ -65,5 +72,35 @@ namespace ToDoList.Tests
           //Assert
           CollectionAssert.AreEqual(newList, result);
         }
+
+        [TestMethod]
+          public void AddItem_AssociatesItemWithCategory_ItemList()
+          {
+            //Arrange
+            string description = "Walk the dog.";
+            Item newItem = new Item(description, 1);
+            List<Item> newList = new List<Item> { newItem };
+            string name = "Work";
+            Category newCategory = new Category(name);
+            newCategory.AddItem(newItem);
+
+            //Act
+            List<Item> result = newCategory.GetItems();
+
+            //Assert
+            CollectionAssert.AreEqual(newList, result);
+          }
+
+
+          [TestMethod]
+             public void GetAll_CategoriesEmptyAtFirst_List()
+             {
+               //Arrange, Act
+               int result = Category.GetAll().Count;
+
+               //Assert
+               Assert.AreEqual(0, result);
+             }
+
   }
 }
