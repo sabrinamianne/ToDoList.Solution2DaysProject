@@ -105,6 +105,41 @@ namespace ToDoList.Tests
          CollectionAssert.AreEqual(newList, result);
        }
 
+      //  [TestMethod]
+      // public void Save_AssignsIdToObject_Id()
+      // {
+      //   //Arrange
+      //   Item testItem = new Item("Mow the lawn");
+      //
+      //   //Act
+      //   testItem.Save();
+      //   Item savedItem = Item.GetAll()[0];
+      //
+      //   int result = savedItem.GetId();
+      //   int testId = testItem.GetId();
+      //
+      //   //Assert
+      //   Assert.AreEqual(testId, result);
+      // }
+
+
+
+
+
+      [TestMethod]
+      public void Find_ReturnsCorrectItemFromDatabase_Item()
+      {
+        //Arrange
+        Item testItem = new Item("Mow the lawn");
+        testItem.Save();
+
+        //Act
+        Item foundItem = Item.Find(testItem.GetId());
+
+        //Assert
+        Assert.AreEqual(testItem, foundItem);
+      }
+
        // [TestMethod]
        // public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
        // {
