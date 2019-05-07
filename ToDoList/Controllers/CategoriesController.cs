@@ -40,15 +40,30 @@ namespace ToDoList.Controllers
     }
 
     [HttpPost("/categories/{categoryId}/items")]
-    public ActionResult Create(int categoryId, string itemDescription, DateTime itemDueDate)
+    public ActionResult Create(int categoryId, string itemDescription, DateTime dueDate  )
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Category foundCategory = Category.Find(categoryId);
-      Item newItem = new Item(itemDescription, itemDueDate);
+      Item newItem = new Item(itemDescription, dueDate);
       newItem.Save();
       foundCategory.AddItem(newItem);
       List<Item> categoryItems = foundCategory.GetItems();
       model.Add("items", categoryItems);
+      model.Add("category", foundCategory);
+      return View("Show", model);
+    }
+
+
+    [HttpGet("/categories/{categoryId}/itemssort")]
+    public ActionResult Sort(int categoryId, string itemDescription, DateTime dueDate  )
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category foundCategory = Category.Find(categoryId);
+      // Item newItem = new Item(itemDescription, dueDate);
+      // newItem.Save();
+      // foundCategory.AddItem(newItem);
+      List<Item> sortedItems = Item.Sort();
+      model.Add("items", sortedItems);
       model.Add("category", foundCategory);
       return View("Show", model);
     }

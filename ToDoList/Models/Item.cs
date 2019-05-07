@@ -75,6 +75,38 @@ namespace ToDoList.Models
 
     }
 
+
+
+        public static List<Item> Sort()
+        {
+          List<Item> allItems = new List<Item>{ };
+
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT * FROM items ORDER BY duedate DESC;";
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+          while (rdr.Read())
+          {
+            int itemId = rdr.GetInt32(0);
+            string itemDescription = rdr.GetString(1);
+            DateTime itemDueDate = rdr.GetDateTime(2);
+            Item newItem = new Item (itemDescription,itemDueDate);
+            allItems.Add(newItem);
+          }
+
+          conn.Close();
+
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+
+          return allItems;
+
+        }
+
     public static void ClearAll()
     {
       MySqlConnection conn = DB.Connection();
@@ -111,11 +143,15 @@ namespace ToDoList.Models
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
 
-      cmd.CommandText = @"INSERT INTO items (description) VALUES (@ItemDescription);";
+      cmd.CommandText = @"INSERT INTO items (description, duedate) VALUES (@ItemDescription, @ItemDueDate);";
       MySqlParameter description = new MySqlParameter();
+      MySqlParameter duedate = new MySqlParameter();
       description.ParameterName = "@ItemDescription";
+      duedate.ParameterName = "@ItemDueDate";
       description.Value = this._description;
+      duedate.Value = this._duedate;
       cmd.Parameters.Add(description);
+      cmd.Parameters.Add(duedate);
       cmd.ExecuteNonQuery();
 
       _id = (int) cmd.LastInsertedId;
