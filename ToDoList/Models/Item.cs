@@ -7,12 +7,15 @@ namespace ToDoList.Models
   public class Item // class
   {
     private string _description; // field
+
+    private DateTime _duedate;
     private int _id;
     // private static List<Item> _instances = new List<Item>{}; //list
 
-    public Item (string description, int id=0) // constructor
+    public Item (string description, DateTime duedate, int id=0) // constructor
     {
       _description = description;
+      _duedate = duedate;
       // _instances.Add(this); //what is this
       _id = id;
     }
@@ -29,6 +32,19 @@ namespace ToDoList.Models
     }
 
 
+
+
+        public DateTime GetDueDate()
+        {
+          return _duedate;
+        }
+
+        public void SetDueDate(DateTime newDueDate)
+        {
+          _duedate = newDueDate;
+        }
+
+
     public static List<Item> GetAll()
     {
       List<Item> allItems = new List<Item>{ };
@@ -43,7 +59,8 @@ namespace ToDoList.Models
       {
         int itemId = rdr.GetInt32(0);
         string itemDescription = rdr.GetString(1);
-        Item newItem = new Item (itemDescription);
+        DateTime itemDueDate = rdr.GetDateTime(2);
+        Item newItem = new Item (itemDescription,itemDueDate);
         allItems.Add(newItem);
       }
 
@@ -130,13 +147,15 @@ namespace ToDoList.Models
     var rdr = cmd.ExecuteReader() as MySqlDataReader;
     int itemId=0;
     string itemDescription ="";
+    DateTime itemDueDate = new DateTime();
 
     while(rdr.Read())
     {
       itemId = rdr.GetInt32(0);
       itemDescription = rdr.GetString(1);
+      itemDueDate = rdr.GetDateTime(2);
     }
-    Item fountItem = new Item (itemDescription, itemId);
+    Item fountItem = new Item (itemDescription,itemDueDate, itemId);
 
     conn.Close();
     if(conn != null)
