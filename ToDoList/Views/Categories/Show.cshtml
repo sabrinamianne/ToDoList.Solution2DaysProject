@@ -3,7 +3,7 @@
 <ol>
 @foreach (var item in @Model["items"])
 {
-  <li><a href='/categories/@Model["category"].GetId()/items/@item.GetId()'>@item.GetDescription()</a></li>
+  <li><a href='/categories/@Model["category"].GetId()/items/@item.GetId()'>@item.GetDescription()  @item.GetDueDate()</a></li>
   <form action="/categories/@Model["category"].GetId()/items/@item.GetId()/deleteitem" method="post">
     <button type="submit" name="button">Delete item</button>
   </form>
@@ -11,5 +11,6 @@
 </ol>
 
 <p><a href='/categories/@Model["category"].GetId()/items/new'>Add a new item</a></p>
+<p><a href='/categories/@Model["category"].GetId()/itemssort'>Sort by due date</a></p>
 <p><a href='/categories'>Return to category list</a></p>
 <p><a href='/'>Return to Main Page</a></p>

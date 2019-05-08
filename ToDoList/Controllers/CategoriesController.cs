@@ -18,6 +18,24 @@ namespace ToDoList.Controllers
     public ActionResult Create(string categoryName)
     {
       Category newCategory = new Category(categoryName);
+      newCategory.Save();
+      List<Category> allCategories = Category.GetAll();
+      return View("Index", allCategories);
+    }
+
+    [HttpGet("/categories/{categoryId}/edit")]
+    public ActionResult Edit(int categoryId)
+
+    {
+      Category foundCategory = Category.Find(categoryId);
+      return View("Edit",foundCategory );
+    }
+
+    [HttpPost("/categories/{id}/editedCategory")]
+    public ActionResult Edit(int id, string categoryName)
+    {
+      Category newCategory = Category.Find(id);
+      newCategory.Edit(categoryName);
       List<Category> allCategories = Category.GetAll();
       return View("Index", allCategories);
     }
@@ -40,13 +58,13 @@ namespace ToDoList.Controllers
     }
 
     [HttpPost("/categories/{categoryId}/items")]
-    public ActionResult Create(int categoryId, string itemDescription)
+    public ActionResult Create(int categoryId, string itemDescription, DateTime dueDate)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Category foundCategory = Category.Find(categoryId);
-      Item newItem = new Item(itemDescription);
+      Item newItem = new Item(itemDescription, dueDate, categoryId);
       newItem.Save();
-      foundCategory.AddItem(newItem);
+      // foundCategory.AddItem(newItem);
       List<Item> categoryItems = foundCategory.GetItems();
       model.Add("items", categoryItems);
       model.Add("category", foundCategory);
@@ -56,11 +74,11 @@ namespace ToDoList.Controllers
     [HttpPost("/categories/{categoryId}/items/{itemId}/deleteitem")]
     public ActionResult ShowId (int categoryId, int itemId)
     {
-      Dictionary<string, object> model = new Dictionary<string, object>();
+      Dictionary<string, object> model = new Dictionary<string, object>();// стрінг - це айтемз або категорія. а обджнкт - це те що я конеретно знайшла
       Category foundCategory = Category.Find(categoryId);
       Item item = Item.Find(itemId);
-      // item.DeleteItem();
-      foundCategory.ClearItem(item);
+      item.Delete();
+      // foundCategory.ClearItem(item);
       List<Item> categoryItems = foundCategory.GetItems();
       model.Add("items", categoryItems);
       model.Add("category", foundCategory);
@@ -88,6 +106,19 @@ namespace ToDoList.Controllers
       Category foundCategory = Category.Find(categoryId);
       foundCategory.Delete();
       return RedirectToAction("Index");
+    }
+
+
+
+    [HttpGet("/categories/{categoryId}/itemssort")]
+    public ActionResult SortItem(int categoryId)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category foundCategory = Category.Find(categoryId);
+      List<Item> sortedItems= Item.Sort();
+      model.Add("items", sortedItems);
+      model.Add("category", foundCategory);
+      return View("Show", model);
     }
 
 

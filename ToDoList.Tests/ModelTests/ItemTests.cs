@@ -22,7 +22,7 @@ namespace ToDoList.Tests
     [TestMethod]
     public void ItemConstructor_CreatesInstanceOfItem_Item()
     {
-      Item newItem = new Item("test");
+      Item newItem = new Item("test", new DateTime(), 1);
       Assert.AreEqual(typeof(Item), newItem.GetType());
     }
 
@@ -42,7 +42,7 @@ namespace ToDoList.Tests
        {
          //Arrange
          string description = "Walk the dog.";
-         Item newItem = new Item(description);
+         Item newItem = new Item(description, new DateTime(), 1);
 
          //Act
          string updatedDescription = "Do the dishes";
@@ -68,15 +68,18 @@ namespace ToDoList.Tests
        [TestMethod]
        public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Item()
        {
-         Item firstItem = new Item("Mow the lawn");
-         Item secondItem = new Item("Mow the lawn");
+         DateTime date = new DateTime();
+         Item firstItem = new Item("Mow the lawn", date, 1);
+         Item secondItem = new Item("Mow the lawn", date, 1);
          Assert.AreEqual(firstItem, secondItem);
        }
 
        [TestMethod]
        public void Save_SavesToDatabase_ItemList()
        {
-         Item testItem = new Item("Mow the lawn");
+         DateTime date = new DateTime();
+
+         Item testItem = new Item("Mow the lawn", date, 1);
          testItem.Save();
          List<Item> result = Item.GetAll();
          List<Item> testList = new List<Item>{testItem};
@@ -89,12 +92,14 @@ namespace ToDoList.Tests
        [TestMethod]
        public void GetAll_ReturnsItems_ItemList()
        {
+         DateTime date = new DateTime();
+
          //Arrange
          string description01 = "Walk the dog";
          string description02 = "Wash the dishes";
-         Item newItem1 = new Item(description01);
+         Item newItem1 = new Item(description01, date, 1);
          newItem1.Save();
-         Item newItem2 = new Item(description02);
+         Item newItem2 = new Item(description02, date, 1);
          newItem2.Save();
          List<Item> newList = new List<Item> { newItem1, newItem2 };
 
@@ -129,8 +134,10 @@ namespace ToDoList.Tests
       [TestMethod]
       public void Find_ReturnsCorrectItemFromDatabase_Item()
       {
+        DateTime date = new DateTime();
+
         //Arrange
-        Item testItem = new Item("Mow the lawn");
+        Item testItem = new Item("Mow the lawn", date, 1);
         testItem.Save();
 
         //Act

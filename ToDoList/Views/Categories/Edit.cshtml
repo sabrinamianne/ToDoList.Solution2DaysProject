@@ -4,7 +4,7 @@
   <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
   <div class="jumbotron">
     <center>
-      <h1>Add a category</h1>
+      <h1>Edit category</h1>
     </center>
   </div>
 
@@ -16,9 +16,9 @@
   <div class="card" style="width: 18rem;">
     <div class="card-body">
 
-      <form action="/categories" method="post">
-        <label for="categoryName">Category name</label>
-        <input id="categoryName" name="categoryName" type="text"> <button id="button" type="submit">Add</button><br>
+      <form action="/categories/@Model.GetId()/editedCategory" method="post">
+        <label for="categoryName">Change name</label>
+        <input id="categoryName" name="categoryName" type="text" value ="@Model.GetName()"> <button id="button" type="submit">Update</button><br>
 
 
       </form>
