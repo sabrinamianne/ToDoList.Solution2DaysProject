@@ -48,11 +48,6 @@ namespace ToDoList.Models
     }
 
 
-
-
-
-
-
     public static List<Item> GetAll()
     {
       List<Item> allItems = new List<Item>{ };

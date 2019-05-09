@@ -26,7 +26,8 @@
 <ul>
   @foreach ( var category in Model)
   {
-      <p class="card-text"><a href='/categories/@category.GetId()'>@category.GetName()</a></p>
+      <p class="card-text"><a href='/categories/@category.GetId()'>@category.GetName()</a>                                                                                                    
+        <a href='/categories/@category.GetId()'>@category.GetCountItems()</a></p>
   }
 </ul>
 

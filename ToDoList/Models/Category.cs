@@ -35,6 +35,14 @@ namespace ToDoList.Models
         {
             return _name;
         }
+
+        public int GetCountItems()
+        {
+          Category selectedCategory = Category.Find(_id);
+          List<Item> categoryItems = selectedCategory.GetItems();
+          int count = categoryItems.Count ;
+          return count;
+        }
         public int GetId()
         {
             return _id;
