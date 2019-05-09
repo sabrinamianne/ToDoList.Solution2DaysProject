@@ -2,7 +2,9 @@
 
 <form action="/categories/@Model["category"].GetId()/items/@Model["item"].GetId()/edititem" method="post">
   <label for="newDescription">Name:</label>
-  <input type="text" name="newDescription" value="@Model["item"].GetDescription()">
+  <input type="text" name="newDescription" value="@Model["item"].GetDescription()"><br><br>
+  <label for="newDueDate">Due Date:</label>
+  <input type="date" name="newDueDate" value="@Model["item"].GetDueDate()"><br><br>
   <button type="submit">Edit</button>
 </form>
 

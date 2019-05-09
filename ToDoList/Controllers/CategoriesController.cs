@@ -125,10 +125,10 @@ namespace ToDoList.Controllers
     // }
 
     [HttpPost("/categories/{categoryId}/items/{itemId}/edititem")]
-    public ActionResult Update(int categoryId, int itemId, string newDescription)
+    public ActionResult Update(int categoryId, int itemId, string newDescription , DateTime newDueDate)
     {
       Item item = Item.Find(itemId);
-      item.Edit(newDescription);
+      item.Edit(newDescription, newDueDate);
       Dictionary<string, object> model = new Dictionary<string, object>();
       Category category = Category.Find(categoryId);
       List<Item> categoryItems = category.GetItems();

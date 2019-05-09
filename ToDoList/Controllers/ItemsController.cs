@@ -32,10 +32,6 @@ namespace ToDoList.Controllers
       return View();
     }
 
-
-
-
-
     [HttpGet("/categories/{categoryId}/items/{itemId}/edit")]
     public ActionResult Edit(int categoryId, int itemId)
     {

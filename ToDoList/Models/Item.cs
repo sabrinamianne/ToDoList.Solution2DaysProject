@@ -199,12 +199,13 @@ namespace ToDoList.Models
     }
 
 
-    public void Edit(string newDescription)
+    public void Edit(string newDescription , DateTime newduedate)
    {
      MySqlConnection conn = DB.Connection();
      conn.Open();
      var cmd = conn.CreateCommand() as MySqlCommand;
      cmd.CommandText = @"UPDATE items SET description = @newDescription WHERE id = @searchId;";
+     cmd.CommandText = @"UPDATE items SET duedate = @newduedate WHERE id = @searchId;";
      MySqlParameter searchId = new MySqlParameter();
      searchId.ParameterName = "@searchId";
      searchId.Value = _id;
@@ -214,9 +215,14 @@ namespace ToDoList.Models
      description.ParameterName = "@newDescription";
      description.Value = newDescription;
      cmd.Parameters.Add(description);
+     MySqlParameter duedate = new MySqlParameter();
+     duedate.ParameterName = "@newduedate";
+     duedate.Value = newduedate;
+     cmd.Parameters.Add(duedate);
      cmd.ExecuteNonQuery();
 
      _description = newDescription;
+     _duedate = newduedate;
 
      conn.Close();
      if (conn != null)
