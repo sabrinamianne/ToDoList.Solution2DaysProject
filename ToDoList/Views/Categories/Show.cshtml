@@ -1,16 +1,48 @@
-<h3>Here are all of the items in this category:</h3>
+<html>
 
-<ol>
-@foreach (var item in @Model["items"])
-{
-  <li><a href='/categories/@Model["category"].GetId()/items/@item.GetId()'>@item.GetDescription() @item.GetDueDate()</a></li>
-  <form action="/categories/@Model["category"].GetId()/items/@item.GetId()/deleteitem" method="post">
-    <button type="submit" name="button">Delete item</button>
-  </form>
-}
-</ol>
+<head>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
 
-<p><a href='/categories/@Model["category"].GetId()/items/new'>Add a new item</a></p>
-<p><a href='/categories/@Model["category"].GetId()/itemssort'>Sort by due date</a></p>
-<p><a href='/categories'>Return to category list</a></p>
-<p><a href='/'>Return to Main Page</a></p>
+  <link rel='stylesheet' href='~/css/styles.css'>
+</head>
+
+<body>
+
+
+  <h3>Here are all of the items in this category:</h3>
+
+  <ol>
+    @foreach (var item in @Model["items"])
+    {
+    <li>
+      <a href='/categories/@Model["category"].GetId()/items/@item.GetId()'>
+        @item.GetDescription() @item.GetDueDate()
+      </a>
+    </li>
+    <form action="/categories/@Model[" category"].GetId()/items/@item.GetId()/deleteitem" method="post">
+
+      <button type="submit" name="button">Delete item</button>
+    </form>
+
+    <a href='/categories/@Model["category"].GetId()/items/@item.GetId()/edit'>Edit this item</a>
+    }
+  </ol>
+
+  <p><a href='/categories/@Model["category"].GetId()/items/new'>Add a new item</a></p>
+
+  <p><a href='/categories/@Model["category"].GetId()/itemssort'>Sort by duedate</a></p>
+
+  <p><a href='/categories'>Return to category list</a></p>
+  <p><a href='/'>Return to Main Page</a></p>
+  <div class="col-md-12 mb-4">
+
+    <button type="button" class="btn peach-gradient btn-rounded">Primary</button>
+    <button type="button" class="btn blue-gradient btn-rounded">Default</button>
+    <button type="button" class="btn purple-gradient btn-rounded">Secondary</button>
+
+  </div>
+
+
+</body>
+
+</html>

@@ -194,8 +194,11 @@ namespace ToDoList.Models
         int itemId = rdr.GetInt32(0);
         string itemDescription = rdr.GetString(1);
         DateTime itemDueDate = rdr.GetDateTime(2);
-        Item newItem = new Item(itemDescription, itemDueDate,itemId);
+        int itemCategoryId = rdr.GetInt32(3);
+        Item newItem = new Item(itemDescription, itemDueDate, itemCategoryId, itemId);
         allCategoryItems.Add(newItem);
+
+        Console.WriteLine("Hello: " + newItem.GetId());
       }
       conn.Close();
       if (conn != null)

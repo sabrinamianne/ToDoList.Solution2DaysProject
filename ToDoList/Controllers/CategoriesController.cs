@@ -86,19 +86,7 @@ namespace ToDoList.Controllers
       return View("Show", model);
     }
 
-    [HttpPost("/categories/{categoryId}/items/{itemId}/deleteitem")]
-    public ActionResult ShowId (int categoryId, int itemId)
-    {
-      Dictionary<string, object> model = new Dictionary<string, object>();// стрінг - це айтемз або категорія. а обджнкт - це те що я конеретно знайшла
-      Category foundCategory = Category.Find(categoryId);
-      Item item = Item.Find(itemId);
-      item.Delete();
-      // foundCategory.ClearItem(item);
-      List<Item> categoryItems = foundCategory.GetItems();
-      model.Add("items", categoryItems);
-      model.Add("category", foundCategory);
-      return View("Show", model);
-    }
+
 
     [HttpGet("/search_by_category")]
     public ActionResult SearchByCategory()
@@ -114,7 +102,7 @@ namespace ToDoList.Controllers
       return View(filteredcategories);
     }
 
-    [HttpPost("/categories/{categoryId}/delete")]
+    [HttpGet("/categories/{categoryId}/delete")]
     public ActionResult Delete(int categoryId)
 
     {
@@ -136,7 +124,30 @@ namespace ToDoList.Controllers
       return View("Show", model);
     }
 
+    [HttpPost("/categories/{categoryId}/items/{itemId}/edititem")]
+    public ActionResult Update(int categoryId, int itemId, string newDescription)
+    {
+      Item item = Item.Find(itemId);
+      item.Edit(newDescription);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category category = Category.Find(categoryId);
+      List<Item> categoryItems = category.GetItems();
+      model.Add("category", category);
+      model.Add("items", categoryItems);
+      return View("Show", model);
+    }
 
-
+    [HttpPost("/categories/{categoryId}/items/{itemId}/deleteitem")]
+    public ActionResult DeleteItem(int categoryId, int itemId)
+    {
+      Item item = Item.Find(itemId);
+      item.Delete();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Category category = Category.Find(categoryId);
+      List<Item> categoryItems = category.GetItems();
+      model.Add("category", category);
+      model.Add("items", categoryItems);
+      return View("Show", model);
+    }
   }
 }
