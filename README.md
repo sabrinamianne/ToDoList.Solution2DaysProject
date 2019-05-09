@@ -2,8 +2,8 @@
 #### A program that gathers both a word and sentence from a user, then checks how frequently the word appears in the sentence. , 05.09.2019
 
 
-[ By _**Mariia Stashuk **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/) &
- [ By _**Sabrina Mianne **_]
+[ By _**Mariia Stashuk **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/)
+[ & _**Sabrina Mianne **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/) 
 
 ## Description
 
