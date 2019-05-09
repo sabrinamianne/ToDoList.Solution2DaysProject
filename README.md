@@ -41,7 +41,7 @@ _To run this project,install it locally:_
 ## Description
 ![Alt text](/img/1.png)
 ![Alt text](/img/2.png)
-![Alt text](/img1/3.png)
+![Alt text](/img/3.png)
 
 
 ## Known Bugs
