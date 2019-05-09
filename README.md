@@ -3,7 +3,7 @@
 
 
 [ By _**Mariia Stashuk **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/)
-[ & _**Sabrina Mianne **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/) 
+[ & _**Sabrina Mianne **_](https://www.linkedin.com/in/mariia-stashuk-66754816a/)
 
 ## Description
 
@@ -39,9 +39,9 @@ _To run this project,install it locally:_
 |User forgot to enter a sentence  | "1"  | "please enter at least one word" |
 
 ## Description
-![Alt text](/img1/screen1.png)
-![Alt text](/img1/screen2.png)
-![Alt text](/img1/screen3.png)
+![Alt text](/img/1.png)
+![Alt text](/img/2.png)
+![Alt text](/img1/3.png)
 
 
 ## Known Bugs
