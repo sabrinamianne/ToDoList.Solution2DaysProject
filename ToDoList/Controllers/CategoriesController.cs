@@ -113,16 +113,16 @@ namespace ToDoList.Controllers
 
 
 
-    [HttpGet("/categories/{categoryId}/itemssort")]
-    public ActionResult SortItem(int categoryId)
-    {
-      Dictionary<string, object> model = new Dictionary<string, object>();
-      Category foundCategory = Category.Find(categoryId);
-      List<Item> sortedItems= Item.Sort();
-      model.Add("items", sortedItems);
-      model.Add("category", foundCategory);
-      return View("Show", model);
-    }
+    // [HttpGet("/categories/{categoryId}/itemssort")]
+    // public ActionResult SortItem(int categoryId)
+    // {
+    //   Dictionary<string, object> model = new Dictionary<string, object>();
+    //   Category foundCategory = Category.Find(categoryId);
+    //   List<Item> sortedItems= Item.Sort();
+    //   model.Add("items", sortedItems);
+    //   model.Add("category", foundCategory);
+    //   return View("Show", model);
+    // }
 
     [HttpPost("/categories/{categoryId}/items/{itemId}/edititem")]
     public ActionResult Update(int categoryId, int itemId, string newDescription)
