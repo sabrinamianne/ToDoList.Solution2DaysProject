@@ -15,9 +15,6 @@
 @foreach (var category in Model)
 {
 
-
-
-
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">Category</h5>
@@ -30,7 +27,7 @@
           <button class="btn btn-sm" type="submit" name="button">Clear</button>
         </form>
 
-      <button class="btn btn-sm" ><a href='/categories/@category.GetId()/delete'>Delete</a></button>
+      <br><button class="btn btn-sm" ><a href='/categories/@category.GetId()/delete'>Delete</a></button>
       <button class="btn btn-sm" ><a href='/categories/@category.GetId()/edit'>Edit</a></button>
       </div></li>
   </ul>
@@ -39,9 +36,9 @@
   </div>
 </div>
 
-
-
 }
+
+<br><a class="card-link" href="/">Back home</a>
 
 
 </div>

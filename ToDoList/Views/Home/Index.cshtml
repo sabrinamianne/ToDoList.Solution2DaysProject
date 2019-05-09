@@ -13,8 +13,6 @@
 
 
 
-
-
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href='/categories/new'>Add a new category</a></li>
@@ -23,6 +21,15 @@
 
   </ol>
 </nav>
+
+<h3>My Categories List</h3>
+<ul>
+  @foreach ( var category in Model)
+  {
+      <p class="card-text"><a href='/categories/@category.GetId()'>@category.GetName()</a></p>
+  }
+</ul>
+
 
 </div>
 </body>
