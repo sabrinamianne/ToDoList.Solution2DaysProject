@@ -234,3 +234,7 @@ form button:hover {
     top:-20px;
     border-radius:50%;
 }
+
+#form {
+  color: black;
+}

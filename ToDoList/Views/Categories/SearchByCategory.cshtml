@@ -1,14 +1,27 @@
 <html>
-<body>
-<h1>Search word</h1>
 
+<center>
+
+  <body>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='~/css/styles.css'>
+  <div class="container">
+  <div class="jumbotron">
+    <h1>Search word</h1>
+  </div>
+</div>
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
 <form action="/search_by_category" method="post">
-  <label for="artist">Category name</label>
-  <input id="artist" name="artist" type="text">
+  <strong><label for="artist" id="form">Category Name</label></strong>
+  <input id="artist" name="artist" type="text" style="background-color:#e8e8e8;">
   <button type="submit">Find</button>
 </form>
 
 <p><a href="/">Back home</a></p>
 <p><a href="/categories">Back to categories.</a></p>
+</div>
+</div>
 </body>
+</center>
 </html>

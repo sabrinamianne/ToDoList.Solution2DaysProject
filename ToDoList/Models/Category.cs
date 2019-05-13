@@ -206,7 +206,7 @@ namespace ToDoList.Models
         Item newItem = new Item(itemDescription, itemDueDate, itemCategoryId, itemId);
         allCategoryItems.Add(newItem);
 
-        Console.WriteLine("Hello: " + newItem.GetId());
+    
       }
       conn.Close();
       if (conn != null)

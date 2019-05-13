@@ -102,11 +102,16 @@ namespace ToDoList.Controllers
       return View(filteredcategories);
     }
 
-    [HttpGet("/categories/{categoryId}/delete")]
-    public ActionResult Delete(int categoryId)
+    [ActionName("Destroy"), HttpPost("/categories/{categoryId}/delete")]
+    public ActionResult Destroy(int categoryId)
 
     {
       Category foundCategory = Category.Find(categoryId);
+      List<Item> listItems = foundCategory.GetItems();
+      foreach (Item item in listItems)
+      {
+        item.Delete();
+      }
       foundCategory.Delete();
       return RedirectToAction("Index");
     }
